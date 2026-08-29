@@ -151,6 +151,9 @@ Off-peak periods were observed around:
 - 09:00–11:00
 - 14:00–16:00
 
+<img width="100%"  alt="peak hours chart" src="https://github.com/user-attachments/assets/72ebc40c-8e11-470a-b5a8-b1fc543e56ea" />
+
+
 ### Business Implication
 
 The identified peak periods can be used to optimize workforce scheduling.
