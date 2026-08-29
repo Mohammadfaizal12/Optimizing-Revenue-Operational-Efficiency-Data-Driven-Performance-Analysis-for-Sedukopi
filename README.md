@@ -80,7 +80,7 @@ The performance gap between high- and low-performing outlets provides an opportu
 - Operational execution
 
 
-
+<img src="https://github.com/user-attachments/assets/23c62f35-16e4-47a5-9c84-1804c1b61ed5" width="100%" alt="Outlet chart" />
 ---
 
 ## 2. Best-Selling Menu by Category
