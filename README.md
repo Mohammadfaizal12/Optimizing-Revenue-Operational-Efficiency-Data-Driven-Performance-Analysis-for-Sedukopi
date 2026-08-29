@@ -79,6 +79,9 @@ The performance gap between high- and low-performing outlets provides an opportu
 - Local marketing activity
 - Operational execution
 
+<img width="543" height="315" alt="Outlet chart" src="https://github.com/user-attachments/assets/23c62f35-16e4-47a5-9c84-1804c1b61ed5" />
+
+
 ---
 
 ## 2. Best-Selling Menu by Category
