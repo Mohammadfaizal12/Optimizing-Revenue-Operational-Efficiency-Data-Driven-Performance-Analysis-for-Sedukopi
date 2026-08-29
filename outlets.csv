@@ -1,0 +1,21 @@
+outlet_id,name,city,province,address,manager_name,opening_date,status,seating_capacity
+OUT001,Sedukopi - Sudirman,Jakarta Pusat,DKI Jakarta,Jl. Jend. Sudirman No. 45,Budi Santoso,2019-03-15,active,60
+OUT002,Sedukopi - Thamrin,Jakarta Pusat,DKI Jakarta,Jl. M.H. Thamrin No. 12,Siti Rahmawati,2019-06-20,active,55
+OUT003,Sedukopi - Senopati,Jakarta Selatan,DKI Jakarta,Jl. Senopati Raya No. 88,Ahmad Fauzi,2019-09-10,active,50
+OUT004,Sedukopi - Kemang,Jakarta Selatan,DKI Jakarta,Jl. Kemang Raya No. 24,Dewi Lestari,2020-01-15,active,65
+OUT005,Sedukopi - Blok M,Jakarta Selatan,DKI Jakarta,Jl. Melawai IV No. 7,Eko Prasetyo,2020-03-22,active,45
+OUT006,Sedukopi - Pondok Indah,Jakarta Selatan,DKI Jakarta,Jl. Metro Pondok Indah No. 33,Rina Kusuma,2020-07-08,active,70
+OUT007,Sedukopi - Cipete,Jakarta Selatan,DKI Jakarta,Jl. Cipete Raya No. 56,Hendra Wijaya,2020-11-30,active,40
+OUT008,Sedukopi - Dago,Bandung,Jawa Barat,Jl. Ir. H. Juanda No. 102,Maya Sari,2021-02-14,active,55
+OUT009,Sedukopi - Riau,Bandung,Jawa Barat,Jl. L.L.R.E. Martadinata No. 78,Rudi Hartono,2021-05-20,active,50
+OUT010,Sedukopi - Setiabudi,Bandung,Jawa Barat,Jl. Setiabudi No. 145,Lina Marlina,2021-08-12,active,60
+OUT011,Sedukopi - Tunjungan,Surabaya,Jawa Timur,Jl. Tunjungan No. 25,Agus Setiawan,2021-10-05,active,65
+OUT012,Sedukopi - Darmo,Surabaya,Jawa Timur,Jl. Raya Darmo No. 89,Tika Andriani,2022-01-18,active,55
+OUT013,Sedukopi - Pakuwon,Surabaya,Jawa Timur,Jl. Puncak Indah Lontar No. 12,Doni Pratama,2022-04-25,active,70
+OUT014,Sedukopi - Malioboro,Yogyakarta,DI Yogyakarta,Jl. Malioboro No. 67,Sari Indah,2022-07-10,active,50
+OUT015,Sedukopi - Sudirman Jogja,Yogyakarta,DI Yogyakarta,Jl. Jend. Sudirman No. 34,Wahyu Nugroho,2022-09-15,temporarily_closed,45
+OUT016,Sedukopi - Polonia,Medan,Sumatera Utara,Jl. Polonia No. 21,Fitri Handayani,2022-11-22,active,55
+OUT017,Sedukopi - Setia Budi Medan,Medan,Sumatera Utara,Jl. Setia Budi No. 88,Bambang Sutrisno,2023-02-08,active,50
+OUT018,Sedukopi - Panakkukang,Makassar,Sulawesi Selatan,Jl. Boulevard Raya No. 15,Yuni Astuti,2023-03-20,temporarily_closed,45
+OUT019,Sedukopi - Pettarani,Makassar,Sulawesi Selatan,Jl. A.P. Pettarani No. 100,Joko Susilo,2023-05-14,active,60
+OUT020,Sedukopi - Margonda,Depok,Jawa Barat,Jl. Margonda Raya No. 200,Ratna Wulandari,2023-06-01,active,50
