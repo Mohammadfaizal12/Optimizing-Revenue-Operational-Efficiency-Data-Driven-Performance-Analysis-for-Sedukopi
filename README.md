@@ -24,7 +24,7 @@ The objective is to transform transactional data into **actionable business insi
 | **Outlet Performance** | **Sedukopi - Senopati (OUT003)** generated the highest revenue at **Rp25.53M** among 18 active outlets. |
 | **Product Performance** | **Coffee** was the largest category by sales volume, contributing **36.18% (3,695 units)**. |
 | **Peak Hours** | Transactions followed a **three-wave pattern**: morning, lunch, and evening peaks. |
-| **Order Channels** | **Dine-In** recorded the highest peak volume, reaching **315 orders at 13:00**. |
+| **Order Channels** | **Dine-In** generated the highest volume share at **51.10% (2,555 orders)**, while **Delivery** recorded the highest AOV at **Rp81,306**. |
 | **Menu Contribution** | **48 of 70 menus (68.57%)** generated approximately **80.35% of total menu revenue**. |
 
 ---
@@ -174,33 +174,34 @@ For example:
 
 ### Business Question
 
-> How do customer ordering patterns differ between `dine_in`, `takeaway`, and `delivery`?
+> How do customer ordering patterns, Average Order Value (AOV), and peak transaction hours differ across `dine_in`, `takeaway`, and `delivery`?
 
 ### Analytical Approach
 
-- Calculated AOV by order type.
-- Compared transaction volume across channels.
-- Analyzed peak hours for each order type.
+- Calculated Average Order Value (AOV) for each order channel using `AVG(total_amount)`.
+- Measured overall volume share (`order_percent`) using Window Functions.
+- Analyzed transaction distribution by hour for each channel.
 
 ### Key Finding
 
-Each order channel showed a different peak pattern:
+Each ordering channel demonstrates distinct financial metrics and customer usage patterns:
 
-| Order Type | Peak Period | Highest Observed Volume |
-|---|---|---:|
-| **Dine-In** | 12:00–13:00 & 17:00–19:00 | **315 orders/hour** |
-| **Takeaway** | 07:00–08:00, 12:00–13:00, 17:00–19:00 | **181 orders/hour** |
-| **Delivery** | 07:00, 12:00, 18:00 | **120 orders/hour** |
+| Order Type | Total Orders | Order Share (%) | Average Order Value (AOV) | Peak Period | Highest Hourly Volume |
+|---|---:|---:|---:|---|---:|
+| **Dine-In** | 2,555 | **51.10%** | **Rp77,631** | 12:00–13:00 & 17:00–19:00 | **315 orders/hour** |
+| **Takeaway** | 1,479 | **29.58%** | **Rp78,443** | 07:00–08:00, 12:00–13:00, 17:00–19:00 | **181 orders/hour** |
+| **Delivery** | 966 | **19.32%** | **Rp81,306** | 07:00, 12:00, 18:00 | **120 orders/hour** |
 
-**Dine-In** recorded the highest observed hourly volume at **13:00 with 315 orders**.
-
-**Takeaway** peaked at **07:00 with 181 orders**.
+- **Volume Share:** **Dine-In** dominates total transaction volume, accounting for **51.10% (2,555 orders)** of all sales.
+- **Average Order Value (AOV):** **Delivery** records the highest Average Order Value at **Rp81,306**, despite having the lowest volume share (19.32%). Conversely, **Dine-In** has the lowest AOV at **Rp77,631**.
+- **Peak Volume:** **Dine-In** recorded the highest hourly transaction volume at **13:00 with 315 orders**, while **Takeaway** peaked during the morning rush at **07:00 with 181 orders**.
 
 ### Business Implication
 
-Operational resources can be allocated differently by channel.
+- **Delivery Upselling & Bundling:** Higher AOV in Delivery suggests customers often place group or multi-item orders. Targeted promotional bundles can further leverage this behavior.
+- **Dine-In Basket Size Optimization:** Since Dine-In represents over half of total orders but yields the lowest AOV, implementing in-store upselling (e.g., pastry add-ons or size upgrades) presents a high-leverage revenue opportunity.
+- **Operational Allocation:** Packaging and fast-track pickup procedures should be prioritized during morning hours (07:00–08:00) when Takeaway and Delivery demand rises.
 
-For example, additional packaging and order-processing capacity can be prepared during periods when Takeaway and Delivery demand increases.
 
 ---
 
