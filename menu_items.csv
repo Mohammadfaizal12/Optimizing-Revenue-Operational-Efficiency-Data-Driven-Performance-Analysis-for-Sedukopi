@@ -1,0 +1,81 @@
+item_id,name,category,price,cost_price,is_available,calories
+ITEM001,Espresso,Coffee,29000,9000,true,16
+ITEM002,Americano,Coffee,40000,12000,true,72
+ITEM003,Long Black,Coffee,37000,11000,true,45
+ITEM004,Latte,Coffee,29000,9000,true,183
+ITEM005,Cappuccino,Coffee,28000,8000,true,161
+ITEM006,Mocha,Coffee,50000,15000,true,18
+ITEM007,Macchiato,Coffee,24000,7000,true,33
+ITEM008,Flat White,Coffee,36000,11000,true,69
+ITEM009,Piccolo,Coffee,24000,7000,true,153
+ITEM010,Cortado,Coffee,35000,10000,true,193
+ITEM011,V60,Coffee,49000,15000,true,66
+ITEM012,Tubruk,Coffee,51000,15000,true,160
+ITEM013,Aeropress,Coffee,40000,12000,true,11
+ITEM014,French Press,Coffee,32000,10000,false,188
+ITEM015,Cold Brew,Coffee,50000,15000,true,97
+ITEM016,Iced Americano,Coffee,40000,12000,true,49
+ITEM017,Iced Latte,Coffee,36000,11000,true,96
+ITEM018,Iced Cappuccino,Coffee,29000,9000,true,33
+ITEM019,Iced Mocha,Coffee,47000,14000,true,34
+ITEM020,Kopi Susu Gula Aren,Coffee,46000,14000,false,98
+ITEM021,Kopi Susu Pandan,Coffee,39000,12000,false,21
+ITEM022,Kopi Susu Vanilla,Coffee,52000,16000,true,147
+ITEM023,Dirty Chai,Coffee,30000,9000,false,106
+ITEM024,Affogato,Coffee,27000,8000,true,151
+ITEM025,Caramel Macchiato,Coffee,41000,12000,true,170
+ITEM026,Hazelnut Latte,Coffee,46000,14000,false,157
+ITEM027,Vanilla Latte,Coffee,35000,10000,true,190
+ITEM028,Matcha Espresso Fusion,Coffee,27000,8000,true,21
+ITEM029,Es Kopi Kelapa,Coffee,37000,11000,true,84
+ITEM030,Kopi Tubruk Special,Coffee,27000,8000,true,69
+ITEM031,Matcha Latte,Non-Coffee,21000,6000,true,197
+ITEM032,Matcha Latte Iced,Non-Coffee,27000,8000,true,216
+ITEM033,Teh Tarik,Non-Coffee,39000,12000,true,313
+ITEM034,Coklat Panas,Non-Coffee,30000,9000,true,141
+ITEM035,Coklat Es,Non-Coffee,30000,9000,true,190
+ITEM036,Lemon Tea,Non-Coffee,25000,8000,true,271
+ITEM037,Lychee Tea,Non-Coffee,27000,8000,true,279
+ITEM038,Es Teh Manis,Non-Coffee,39000,12000,true,118
+ITEM039,Thai Tea,Non-Coffee,38000,11000,false,262
+ITEM040,Taro Latte,Non-Coffee,24000,7000,true,236
+ITEM041,Red Velvet Latte,Non-Coffee,26000,8000,true,141
+ITEM042,Strawberry Smoothie,Non-Coffee,33000,10000,true,197
+ITEM043,Mango Smoothie,Non-Coffee,27000,8000,true,336
+ITEM044,Avocado Shake,Non-Coffee,39000,12000,true,276
+ITEM045,Vanilla Milkshake,Non-Coffee,36000,11000,true,156
+ITEM046,Chamomile Tea,Non-Coffee,29000,9000,true,315
+ITEM047,Earl Grey,Non-Coffee,20000,6000,true,158
+ITEM048,Jasmine Tea,Non-Coffee,19000,6000,false,306
+ITEM049,Es Jeruk,Non-Coffee,28000,8000,true,202
+ITEM050,Soda Gembira,Non-Coffee,27000,8000,true,116
+ITEM051,Nasi Goreng Kampung,Makanan,49000,15000,true,590
+ITEM052,Nasi Goreng Spesial,Makanan,56000,17000,true,408
+ITEM053,Mie Goreng Jawa,Makanan,68000,20000,true,502
+ITEM054,Sandwich Tuna,Makanan,65000,20000,true,373
+ITEM055,Sandwich Ayam,Makanan,52000,16000,true,371
+ITEM056,Sandwich Beef,Makanan,51000,15000,true,681
+ITEM057,Club Sandwich,Makanan,72000,22000,true,575
+ITEM058,Croissant Butter,Makanan,52000,16000,true,682
+ITEM059,Croissant Almond,Makanan,73000,22000,true,519
+ITEM060,French Toast,Makanan,73000,22000,true,504
+ITEM061,Pancake Maple,Makanan,59000,18000,true,412
+ITEM062,Waffle Belgian,Makanan,44000,13000,true,560
+ITEM063,Spaghetti Carbonara,Makanan,67000,20000,true,346
+ITEM064,Spaghetti Aglio Olio,Makanan,38000,11000,true,356
+ITEM065,Chicken Rice Bowl,Makanan,45000,14000,false,621
+ITEM066,Beef Rice Bowl,Makanan,45000,14000,true,648
+ITEM067,Salad Caesar,Makanan,63000,19000,true,605
+ITEM068,Quiche Lorraine,Makanan,39000,12000,true,497
+ITEM069,Roti Bakar Coklat,Makanan,60000,18000,true,605
+ITEM070,Burger Beef Classic,Makanan,66000,20000,false,570
+ITEM071,Kue Sus Vanilla,Snack,26000,8000,true,398
+ITEM072,Cookies Chocochip,Snack,18000,5000,true,324
+ITEM073,Brownies Fudge,Snack,22000,7000,true,324
+ITEM074,Donut Glazed,Snack,27000,8000,true,346
+ITEM075,Muffin Blueberry,Snack,29000,9000,true,178
+ITEM076,Cheese Cake Slice,Snack,28000,8000,true,261
+ITEM077,Tiramisu Slice,Snack,23000,7000,true,266
+ITEM078,Cinnamon Roll,Snack,18000,5000,true,394
+ITEM079,Banana Cake,Snack,27000,8000,false,398
+ITEM080,Klepon,Snack,34000,10000,true,345
