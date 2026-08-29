@@ -80,8 +80,9 @@ The performance gap between high- and low-performing outlets provides an opportu
 - Operational execution
 
 <p align="center">
-<img width="600"  alt="outlet chart2" src="https://github.com/user-attachments/assets/a5e97bec-4dbb-46e9-96dc-c9e6ed9de29c" />
+<img width="543" height="315" alt="Outlet chart" src="https://github.com/user-attachments/assets/f1787fd1-2dff-484b-bea6-3e72be99373e" />
 </p>
+
 
 ---
 
@@ -153,7 +154,7 @@ Off-peak periods were observed around:
 - 14:00–16:00
 
 <p align="center">
-<img width="600"  alt="peak hours chart" src="https://github.com/user-attachments/assets/72ebc40c-8e11-470a-b5a8-b1fc543e56ea" />
+<img width="543" height="315"  alt="peak hours chart" src="https://github.com/user-attachments/assets/72ebc40c-8e11-470a-b5a8-b1fc543e56ea" />
 </p>
 
 
