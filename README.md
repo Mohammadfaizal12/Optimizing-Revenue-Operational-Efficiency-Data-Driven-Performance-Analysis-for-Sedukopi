@@ -1,373 +1,501 @@
 # Optimizing Revenue & Operational Efficiency: Data-Driven Performance Analysis for Sedukopi
-## End-to-End Business Analysis using PostgreSQL &amp; Microsoft Excel
 
-**Sedukopi Operations & Sales Performance Analysis** is an end-to-end data analytics project analyzing sales and operational performance across **20 coffee shop outlets** in multiple cities.
+## End-to-End Business Analysis using PostgreSQL & Microsoft Excel
 
-The project uses **PostgreSQL** for data querying, aggregation, and analysis, while **Microsoft Excel** is used for exploratory analysis, visualization, and business reporting.
+## Table of Contents
 
-The analysis focuses on five key business areas:
+1. [Project Overview](#1-project-overview)
+2. [Business Questions](#2-business-questions)
 
-- 🏪 Outlet revenue performance
-- ☕ Best-selling products by category
-- ⏰ Peak-hour transaction patterns
-- 🛍️ Order type & channel performance
-- 📊 Menu revenue contribution using Pareto Analysis
+   * [2.1 Outlet Revenue Performance](#21-outlet-revenue-performance)
+   * [2.2 Product Performance](#22-product-performance)
+   * [2.3 Transaction Performance](#23-transaction-performance)
+   * [2.4 Menu Revenue Contribution](#24-menu-revenue-contribution)
+3. [Dataset & Data Preparation](#3-dataset--data-preparation)
+4. [Analysis](#4-analysis)
 
-The objective is to transform transactional data into **actionable business insights** that can support operational planning, inventory management, product strategy, and channel optimization.
+   * [4.1 Outlet Revenue Performance](#41-outlet-revenue-performance)
+   * [4.2 Best-Selling Menu by Category](#42-best-selling-menu-by-category)
+   * [4.3 Peak Hour Analysis](#43-peak-hour-analysis)
+   * [4.4 Order Type & Channel Analysis](#44-order-type--channel-analysis)
+   * [4.5 Menu Revenue Contribution — Pareto Analysis](#45-menu-revenue-contribution--pareto-analysis)
+5. [Key Insights](#5-key-insights)
+
+   * [5.1 Outlet Performance](#51-outlet-performance)
+   * [5.2 Product Performance](#52-product-performance)
+   * [5.3 Peak Hour Performance](#53-peak-hour-performance)
+   * [5.4 Order Channel Performance](#54-order-channel-performance)
+   * [5.5 Menu Revenue Distribution](#55-menu-revenue-distribution)
+6. [Business Recommendations](#6-business-recommendations)
+
+   * [6.1 Investigate Low-Performing Outlets](#61-investigate-low-performing-outlets)
+   * [6.2 Prioritize High-Volume Products](#62-prioritize-high-volume-products)
+   * [6.3 Optimize Workforce Scheduling](#63-optimize-workforce-scheduling)
+   * [6.4 Optimize Channel Operations](#64-optimize-channel-operations)
+   * [6.5 Evaluate Long-Tail Menu](#65-evaluate-long-tail-menu)
+7. [Tools & Skills](#7-tools--skills)
+
+   * [PostgreSQL](#postgresql)
+   * [Microsoft Excel](#microsoft-excel)
+   * [Analytical Workflow](#analytical-workflow)
 
 ---
 
-## 📊 Executive Summary
+## 1. Project Overview
 
-| Business Area | Key Finding |
-|---|---|
-| **Outlet Performance** | **Sedukopi - Senopati (OUT003)** generated the highest revenue at **Rp25.53M** among 18 active outlets. |
-| **Product Performance** | **Coffee** was the largest category by sales volume, contributing **36.18% (3,695 units)**. |
-| **Peak Hours** | Transactions followed a **three-wave pattern**: morning, lunch, and evening peaks. |
-| **Order Channels** | **Dine-In** generated the highest volume share at **51.10% (2,555 orders)**, while **Delivery** recorded the highest AOV at **Rp81,306**. |
-| **Menu Contribution** | **48 of 70 menus (68.57%)** generated approximately **80.35% of total menu revenue**. |
+**Sedukopi Operations & Sales Performance Analysis** merupakan proyek analisis data end-to-end yang bertujuan untuk menganalisis performa penjualan dan operasional pada **20 outlet coffee shop** di beberapa kota.
+
+Proyek ini menggunakan **PostgreSQL** untuk proses data querying, aggregation, dan analysis, sedangkan **Microsoft Excel** digunakan untuk exploratory analysis, visualisasi, dan business reporting.
+
+Analisis difokuskan pada lima area utama:
+
+* 🏪 Performa revenue setiap outlet
+* ☕ Produk dengan volume penjualan tertinggi berdasarkan kategori
+* ⏰ Pola transaksi berdasarkan waktu dan peak hours
+* 🛍️ Performa berdasarkan tipe order dan channel
+* 📊 Kontribusi revenue setiap menu menggunakan Pareto Analysis
+
+Tujuan proyek ini adalah mengubah data transaksi menjadi **insight yang dapat ditindaklanjuti** untuk mendukung perencanaan operasional, inventory management, product strategy, dan channel optimization.
+
+### Executive Summary
+
+| Business Area           | Key Finding                                                                                                                                           |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Outlet Performance**  | **Sedukopi - Senopati (OUT003)** menghasilkan revenue tertinggi sebesar **Rp25,53 juta** dari 18 outlet aktif.                                        |
+| **Product Performance** | **Coffee** menjadi kategori dengan volume penjualan terbesar, yaitu **36,18% (3.695 unit)**.                                                          |
+| **Peak Hours**          | Transaksi menunjukkan **tiga pola peak period**: pagi, siang, dan sore/malam.                                                                         |
+| **Order Channels**      | **Dine-In** memiliki volume transaksi terbesar sebesar **51,10% (2.555 orders)**, sedangkan **Delivery** memiliki AOV tertinggi sebesar **Rp81.306**. |
+| **Menu Contribution**   | **48 dari 70 menu (68,57%)** menghasilkan sekitar **80,35% total revenue menu**.                                                                      |
 
 ---
 
-## 🎯 Business Objectives
+## 2. Business Questions
 
-This project was designed to answer practical business questions around:
+Proyek ini dirancang untuk menjawab beberapa pertanyaan bisnis berikut.
 
-1. Which outlets generate the highest and lowest revenue?
-2. Which menu items are the best sellers within each category?
-3. When are Sedukopi's busiest transaction periods?
-4. How do customer ordering patterns differ across `dine_in`, `takeaway`, and `delivery`?
-5. Which menu items contribute the most to total revenue?
-6. How concentrated is revenue across the menu portfolio?
+### 2.1 Outlet Revenue Performance
+
+* Outlet mana yang menghasilkan revenue tertinggi?
+* Outlet mana yang menghasilkan revenue terendah?
+* Bagaimana perbedaan performa revenue antar outlet aktif?
+
+### 2.2 Product Performance
+
+* Kategori produk mana yang memiliki volume penjualan tertinggi?
+* Produk apa yang menjadi best seller pada masing-masing kategori?
+* Produk mana yang perlu mendapatkan prioritas dalam inventory dan persiapan operasional?
+
+### 2.3 Transaction Performance
+
+* Kapan periode transaksi Sedukopi paling ramai?
+* Bagaimana pola transaksi berdasarkan jam?
+* Bagaimana perbedaan volume transaksi dan **Average Order Value (AOV)** berdasarkan tipe order?
+* Kapan masing-masing channel memiliki volume transaksi tertinggi?
+
+### 2.4 Menu Revenue Contribution
+
+* Apakah revenue Sedukopi terkonsentrasi pada sebagian kecil menu?
+* Berapa banyak menu yang berkontribusi terhadap sekitar 80% total revenue?
+* Bagaimana distribusi revenue berdasarkan keseluruhan menu?
 
 ---
 
-# 🔎 Business Cases & Analysis
+## 3. Dataset & Data Preparation
 
-## 1. Outlet Revenue Performance
+Data diproses menggunakan **PostgreSQL** sebelum digunakan untuk analisis dan visualisasi menggunakan Microsoft Excel.
 
-### Business Question
+### Data Preparation
 
-> Which Sedukopi outlets generate the highest revenue, and which outlets are underperforming?
+Tahapan data preparation yang dilakukan meliputi:
 
-### Analytical Approach
+* Menggabungkan data outlet dan transaksi menggunakan `JOIN`.
+* Melakukan filtering terhadap outlet berdasarkan status operasional.
+* Mengelompokkan data berdasarkan outlet, kategori produk, waktu transaksi, dan tipe order.
+* Melakukan aggregation menggunakan `SUM()`, `AVG()`, dan `COUNT()`.
+* Menggunakan `CASE WHEN` untuk kebutuhan conditional calculation.
+* Menggunakan `EXTRACT()` untuk mengambil informasi jam dari waktu transaksi.
+* Menggunakan **Window Functions** untuk menghitung persentase kontribusi.
+* Menggunakan **CTE** untuk menyusun query analisis secara terstruktur.
 
-- Joined outlet and transaction data.
-- Aggregated `total_amount` by outlet.
-- Filtered out temporarily closed outlets.
-- Ranked active outlets based on total revenue.
+### Penanganan Outlet Tidak Aktif
 
-### Key Finding
+Dataset terdiri dari **20 outlet**.
 
-**Sedukopi - Senopati (OUT003)** ranked #1 with revenue of:
+Namun, terdapat dua outlet yang berstatus `temporarily_closed` dan tidak memiliki transaksi:
 
-**Rp25.53M**
+* OUT015
+* OUT018
 
-Meanwhile, **Sedukopi - Margonda (OUT020)** ranked last among the 18 active outlets with:
+Kedua outlet tersebut dikeluarkan dari perbandingan performa sehingga analisis revenue outlet berfokus pada **18 outlet aktif**.
 
-**Rp15.99M**
+### Data Aggregation
 
-Two outlets, **OUT015** and **OUT018**, were temporarily closed and had no transactions, so they were excluded from the active-outlet ranking.
+Beberapa metrik yang digunakan dalam analisis meliputi:
 
-### Business Implication
+* Total revenue
+* Total orders
+* Total quantity
+* Order share
+* Average Order Value (AOV)
+* Revenue contribution
+* Cumulative revenue contribution
 
-The performance gap between high- and low-performing outlets provides an opportunity to investigate differences in:
+---
 
-- Customer demand
-- Location performance
-- Product mix
-- Local marketing activity
-- Operational execution
+## 4. Analysis
+
+Analisis dilakukan menggunakan **PostgreSQL** untuk querying dan aggregation, kemudian hasilnya digunakan dalam **Microsoft Excel** untuk exploratory analysis dan visualisasi.
+
+Analisis mencakup lima area utama:
+
+1. Outlet Revenue Performance
+2. Best-Selling Menu by Category
+3. Peak Hour Analysis
+4. Order Type & Channel Analysis
+5. Menu Revenue Contribution — Pareto Analysis
+
+---
+
+### 4.1 Outlet Revenue Performance
+
+#### Business Question
+
+> Outlet Sedukopi mana yang menghasilkan revenue tertinggi dan mana yang memiliki performa revenue terendah?
+
+#### Analytical Approach
+
+* Menggabungkan data outlet dan transaksi.
+* Mengagregasikan `total_amount` berdasarkan outlet.
+* Memfilter outlet yang berstatus `temporarily_closed`.
+* Melakukan ranking outlet aktif berdasarkan total revenue.
+
+#### Key Finding
+
+**Sedukopi - Senopati (OUT003)** menempati peringkat pertama dengan revenue sebesar:
+
+**Rp25,53 juta**
+
+Sementara itu, **Sedukopi - Margonda (OUT020)** menjadi outlet dengan revenue terendah di antara 18 outlet aktif dengan:
+
+**Rp15,99 juta**
+
+OUT015 dan OUT018 tidak memiliki transaksi karena berstatus `temporarily_closed`, sehingga tidak dimasukkan dalam ranking outlet aktif.
+
+#### Business Implication
+
+Perbedaan performa antar outlet dapat menjadi dasar untuk mengevaluasi faktor seperti:
+
+* Customer demand
+* Performa lokasi
+* Product mix
+* Local marketing
+* Operational execution
 
 <p align="center">
 <img width="543" height="315" alt="Outlet chart" src="https://github.com/user-attachments/assets/f1787fd1-2dff-484b-bea6-3e72be99373e" />
 </p>
 
+---
+
+### 4.2 Best-Selling Menu by Category
+
+#### Business Question
+
+> Produk apa yang memiliki volume penjualan tertinggi pada masing-masing kategori?
+
+#### Analytical Approach
+
+* Mengagregasikan `quantity` dari order details.
+* Mengelompokkan produk berdasarkan kategori.
+* Melakukan ranking produk dalam setiap kategori.
+* Membandingkan kontribusi volume penjualan antar kategori.
+
+#### Key Finding
+
+Kategori **Coffee** memiliki volume penjualan terbesar dengan:
+
+**3.695 unit — 36,18% dari total unit terjual**
+
+| Category   | Best-Selling Product   | Units Sold |
+| ---------- | ---------------------- | ---------: |
+| Coffee     | Matcha Espresso Fusion |        180 |
+| Makanan    | Croissant Butter       |        176 |
+| Non-Coffee | Strawberry Smoothie    |        174 |
+| Snack      | Cheese Cake Slice      |        177 |
+
+Total volume penjualan tercatat sebesar **10.214 unit**.
+
+#### Business Implication
+
+Produk dengan volume penjualan tinggi dapat menjadi prioritas dalam:
+
+* Inventory availability
+* Product promotion
+* Stock planning
+* Operational preparation
 
 ---
 
-## 2. Best-Selling Menu by Category
+### 4.3 Peak Hour Analysis
 
-### Business Question
+#### Business Question
 
-> Which menu items sell the most within each product category?
+> Kapan periode transaksi Sedukopi paling ramai?
 
-### Analytical Approach
+#### Analytical Approach
 
-- Aggregated `quantity` from order details.
-- Grouped products by category.
-- Ranked products within each category.
-- Compared total unit contribution across categories.
+* Mengambil informasi jam dari waktu transaksi.
+* Mengelompokkan transaksi berdasarkan jam.
+* Menganalisis pola transaksi di seluruh outlet.
+* Mengidentifikasi periode peak dan off-peak.
 
-### Key Finding
+#### Key Finding
 
-**Coffee** was the largest category by sales volume:
+Transaksi Sedukopi menunjukkan **tiga pola peak period**:
 
-**3,695 units — 36.18% of total units sold**
-
-| Category | Best-Selling Product | Units Sold |
-|---|---|---:|
-| Coffee | Matcha Espresso Fusion | 180 |
-| Makanan | Croissant Butter | 176 |
-| Non-Coffee | Strawberry Smoothie | 174 |
-| Snack | Cheese Cake Slice | 177 |
-
-Total recorded sales volume reached **10,214 units**.
-
-### Business Implication
-
-High-volume products can receive higher priority for:
-
-- Inventory availability
-- Product promotion
-- Stock planning
-- Operational preparation
-
----
-
-## 3. Peak Hour Analysis
-
-### Business Question
-
-> When are Sedukopi's busiest transaction periods?
-
-### Analytical Approach
-
-- Extracted the hour from transaction time.
-- Grouped transactions by hour.
-- Analyzed transaction patterns across the network.
-- Identified peak and off-peak periods.
-
-### Key Finding
-
-Sedukopi transactions followed a **three-wave peak pattern**:
-
-| Period | Time | Pattern |
-|---|---|---|
+| Periode | Waktu       | Pola         |
+| ------- | ----------- | ------------ |
 | Morning | 07:00–08:00 | Morning Peak |
-| Lunch | 12:00–13:00 | Highest Peak |
+| Lunch   | 12:00–13:00 | Highest Peak |
 | Evening | 17:00–19:00 | Evening Peak |
 
-Off-peak periods were observed around:
+Periode dengan aktivitas relatif lebih rendah berada pada:
 
-- 09:00–11:00
-- 14:00–16:00
+* 09:00–11:00
+* 14:00–16:00
 
 <p align="center">
-<img width="543" height="315"  alt="peak hours chart" src="https://github.com/user-attachments/assets/72ebc40c-8e11-470a-b5a8-b1fc543e56ea" />
+<img width="543" height="315" alt="Peak hours chart" src="https://github.com/user-attachments/assets/72ebc40c-8e11-470a-b5a8-b1fc543e56ea" />
 </p>
 
+#### Business Implication
 
-### Business Implication
+Pola peak hours dapat digunakan sebagai dasar untuk mengoptimalkan workforce scheduling.
 
-The identified peak periods can be used to optimize workforce scheduling.
+Contohnya:
 
-For example:
-
-- Increase staffing during peak hours.
-- Schedule restocking during off-peak periods.
-- Allocate preparation resources based on expected transaction volume.
-
----
-
-## 4. Order Type & Channel Analysis
-
-### Business Question
-
-> How do customer ordering patterns, Average Order Value (AOV), and peak transaction hours differ across `dine_in`, `takeaway`, and `delivery`?
-
-### Analytical Approach
-
-- Calculated Average Order Value (AOV) for each order channel using `AVG(total_amount)`.
-- Measured overall volume share (`order_percent`) using Window Functions.
-- Analyzed transaction distribution by hour for each channel.
-
-### Key Finding
-
-Each ordering channel demonstrates distinct financial metrics and customer usage patterns:
-
-| Order Type | Total Orders | Order Share (%) | Average Order Value (AOV) | Peak Period | Highest Hourly Volume |
-|---|---:|---:|---:|---|---:|
-| **Dine-In** | 2,555 | **51.10%** | **Rp77,631** | 12:00–13:00 & 17:00–19:00 | **315 orders/hour** |
-| **Takeaway** | 1,479 | **29.58%** | **Rp78,443** | 07:00–08:00, 12:00–13:00, 17:00–19:00 | **181 orders/hour** |
-| **Delivery** | 966 | **19.32%** | **Rp81,306** | 07:00, 12:00, 18:00 | **120 orders/hour** |
-
-- **Volume Share:** **Dine-In** dominates total transaction volume, accounting for **51.10% (2,555 orders)** of all sales.
-- **Average Order Value (AOV):** **Delivery** records the highest Average Order Value at **Rp81,306**, despite having the lowest volume share (19.32%). Conversely, **Dine-In** has the lowest AOV at **Rp77,631**.
-- **Peak Volume:** **Dine-In** recorded the highest hourly transaction volume at **13:00 with 315 orders**, while **Takeaway** peaked during the morning rush at **07:00 with 181 orders**.
-
-### Business Implication
-
-- **Delivery Upselling & Bundling:** Higher AOV in Delivery suggests customers often place group or multi-item orders. Targeted promotional bundles can further leverage this behavior.
-- **Dine-In Basket Size Optimization:** Since Dine-In represents over half of total orders but yields the lowest AOV, implementing in-store upselling (e.g., pastry add-ons or size upgrades) presents a high-leverage revenue opportunity.
-- **Operational Allocation:** Packaging and fast-track pickup procedures should be prioritized during morning hours (07:00–08:00) when Takeaway and Delivery demand rises.
-
+* Menambah staffing selama peak hours.
+* Melakukan restocking pada periode off-peak.
+* Mengalokasikan persiapan produk berdasarkan estimasi volume transaksi.
 
 ---
 
-# 📊 5. Menu Revenue Contribution — Pareto Analysis
+### 4.4 Order Type & Channel Analysis
 
-### Business Question
+#### Business Question
 
-> Is Sedukopi's revenue concentrated in a small number of menu items?
+> Bagaimana perbedaan pola transaksi, Average Order Value (AOV), dan peak transaction hours pada `dine_in`, `takeaway`, dan `delivery`?
 
-### Analytical Approach
+#### Analytical Approach
 
-For each menu item:
+* Menghitung Average Order Value (AOV) setiap channel menggunakan `AVG(total_amount)`.
+* Menghitung volume share (`order_percent`) menggunakan Window Functions.
+* Menganalisis distribusi transaksi berdasarkan jam pada setiap channel.
 
-1. Calculate total revenue.
-2. Calculate individual revenue contribution.
-3. Rank menus by revenue.
-4. Calculate cumulative revenue percentage.
-5. Identify the group contributing approximately 80% of revenue.
+#### Key Finding
 
-### Key Finding
+Setiap channel menunjukkan karakteristik volume transaksi dan AOV yang berbeda.
 
-| Pareto Group | Number of Menus | % of Menus | Revenue | Revenue Contribution |
-|---|---:|---:|---:|---:|
-| **Top 80% Revenue** | 48 | 68.57% | Rp315.86M | **80.35%** |
-| **Bottom 20% Revenue** | 22 | 31.43% | Rp77.22M | **19.65%** |
-| **Total** | 70 | 100% | Rp393.08M | 100% |
+| Order Type   | Total Orders | Order Share (%) | Average Order Value (AOV) | Peak Period                           | Highest Hourly Volume |
+| ------------ | -----------: | --------------: | ------------------------: | ------------------------------------- | --------------------: |
+| **Dine-In**  |        2.555 |      **51,10%** |              **Rp77.631** | 12:00–13:00 & 17:00–19:00             |   **315 orders/hour** |
+| **Takeaway** |        1.479 |      **29,58%** |              **Rp78.443** | 07:00–08:00, 12:00–13:00, 17:00–19:00 |   **181 orders/hour** |
+| **Delivery** |          966 |      **19,32%** |              **Rp81.306** | 07:00, 12:00, 18:00                   |   **120 orders/hour** |
 
-The analysis shows that **48 of 70 menus (68.57%)** were required to generate approximately **80% of total menu revenue**.
+Beberapa temuan utama:
 
-Therefore, the revenue distribution does **not** follow a highly concentrated traditional 80/20 pattern.
+* **Volume Share:** Dine-In mendominasi volume transaksi dengan **51,10% atau 2.555 orders**.
+* **AOV:** Delivery memiliki AOV tertinggi sebesar **Rp81.306**, meskipun memiliki volume terendah sebesar 19,32%.
+* **AOV Dine-In:** Dine-In memiliki AOV terendah sebesar **Rp77.631**.
+* **Peak Volume:** Dine-In mencapai volume tertinggi pada pukul **13:00 dengan 315 orders**, sedangkan Takeaway mencapai volume tertinggi pada pukul **07:00 dengan 181 orders**.
 
-### Business Implication
+#### Business Implication
 
-The result suggests that revenue is relatively distributed across the menu portfolio.
+**Delivery Upselling & Bundling**
 
-This can support further evaluation of:
+AOV Delivery yang lebih tinggi menunjukkan peluang untuk memanfaatkan bundling dan upselling untuk meningkatkan nilai transaksi.
 
-- Inventory priorities
-- Product profitability
-- Menu complexity
-- Promotional focus
-- Menu rationalization
+**Dine-In Basket Size Optimization**
 
----
+Dine-In memiliki lebih dari setengah total orders tetapi memiliki AOV terendah. Hal ini membuka peluang untuk meningkatkan basket size melalui add-on, pastry, atau size upgrade.
 
-# 💡 Key Business Insights
+**Operational Allocation**
 
-### 1. Outlet performance varies significantly
-
-Senopati generated the highest revenue among active outlets, while Margonda recorded the lowest.
-
-This performance gap provides an opportunity to investigate differences in customer demand, location, product mix, and operational performance.
-
-### 2. Coffee is the largest sales-volume category
-
-Coffee contributed **36.18% of total units sold**, making it the largest category by volume.
-
-### 3. Transactions follow predictable peak periods
-
-Transaction activity follows a **three-wave pattern** around morning, lunch, and evening periods.
-
-This creates opportunities for more efficient workforce and resource planning.
-
-### 4. Ordering channels behave differently
-
-Dine-In, Takeaway, and Delivery show different peak-hour patterns.
-
-Therefore, staffing and operational capacity can be adjusted according to channel demand.
-
-### 5. Revenue is relatively distributed across the menu
-
-The Pareto analysis shows that **68.57% of the menu portfolio is required to generate approximately 80% of revenue**, indicating that revenue is not concentrated in only a small number of products.
+Packaging dan proses order dapat diprioritaskan pada periode morning peak, khususnya **07:00–08:00**, ketika permintaan Takeaway dan Delivery meningkat.
 
 ---
 
-# 🚀 Business Recommendations
+### 4.5 Menu Revenue Contribution — Pareto Analysis
 
-## 1. Investigate Low-Performing Outlets
+#### Business Question
 
-Conduct further analysis on lower-performing outlets such as **Margonda** and **Setia Budi Medan**.
+> Apakah revenue Sedukopi terkonsentrasi pada sebagian kecil menu?
 
-Potential areas of investigation:
+#### Analytical Approach
 
-- Customer traffic
-- Local demand
-- Product mix
-- Operating hours
-- Local marketing activity
+Untuk setiap menu dilakukan:
 
----
+1. Menghitung total revenue.
+2. Menghitung kontribusi revenue setiap menu.
+3. Melakukan ranking berdasarkan revenue.
+4. Menghitung cumulative revenue percentage.
+5. Mengidentifikasi kelompok menu yang menghasilkan sekitar 80% revenue.
 
-## 2. Prioritize High-Volume Products
+#### Key Finding
 
-Maintain sufficient inventory and preparation capacity for high-volume products such as:
+| Pareto Group           | Number of Menus | % of Menus |       Revenue | Revenue Contribution |
+| ---------------------- | --------------: | ---------: | ------------: | -------------------: |
+| **Top 80% Revenue**    |              48 |     68,57% | Rp315,86 juta |           **80,35%** |
+| **Bottom 20% Revenue** |              22 |     31,43% |  Rp77,22 juta |           **19,65%** |
+| **Total**              |              70 |       100% | Rp393,08 juta |                 100% |
 
-- Matcha Espresso Fusion
-- Croissant Butter
-- Strawberry Smoothie
-- Cheese Cake Slice
+Hasil analisis menunjukkan bahwa **48 dari 70 menu atau 68,57%** diperlukan untuk menghasilkan sekitar **80,35% total revenue menu**.
 
-This is particularly important during peak transaction periods.
+Dengan demikian, distribusi revenue tidak mengikuti pola 80/20 tradisional yang sangat terkonsentrasi pada sebagian kecil menu.
 
----
+#### Business Implication
 
-## 3. Optimize Workforce Scheduling
+Hasil tersebut menunjukkan bahwa revenue relatif tersebar di seluruh portfolio menu.
 
-Use the identified peak periods to implement staggered staffing:
+Hal ini dapat menjadi dasar untuk mengevaluasi:
 
-- **07:00–09:00**
-- **12:00–14:00**
-- **17:00–20:00**
-
-Off-peak periods can be used for:
-
-- Restocking
-- Food preparation
-- Cleaning
-- Staff breaks
-- Operational preparation
+* Inventory priorities
+* Product profitability
+* Menu complexity
+* Promotional focus
+* Menu rationalization
 
 ---
 
-## 4. Optimize Channel Operations
+## 5. Key Insights
 
-Increase packaging and order-processing capacity during periods with high Takeaway and Delivery demand, particularly during the morning peak.
+### 5.1 Outlet Performance
+
+Performa revenue antar outlet menunjukkan adanya perbedaan.
+
+**Senopati (OUT003)** menghasilkan revenue tertinggi di antara outlet aktif sebesar **Rp25,53 juta**, sedangkan **Margonda (OUT020)** menghasilkan revenue terendah sebesar **Rp15,99 juta**.
+
+Perbedaan tersebut dapat menjadi dasar untuk mengevaluasi customer demand, lokasi, product mix, dan operational performance.
+
+### 5.2 Product Performance
+
+Kategori **Coffee** menjadi kategori dengan volume penjualan terbesar dengan kontribusi **36,18% atau 3.695 unit** dari total 10.214 unit.
+
+Produk dengan volume tinggi dapat menjadi prioritas dalam inventory availability dan operational preparation.
+
+### 5.3 Peak Hour Performance
+
+Aktivitas transaksi menunjukkan pola **tiga periode utama**, yaitu morning, lunch, dan evening.
+
+Pola tersebut memberikan dasar untuk melakukan workforce scheduling dan resource allocation berdasarkan periode dengan volume transaksi tinggi.
+
+### 5.4 Order Channel Performance
+
+**Dine-In** mendominasi volume transaksi dengan **51,10% atau 2.555 orders**, tetapi memiliki AOV terendah sebesar **Rp77.631**.
+
+Sebaliknya, **Delivery** memiliki volume transaksi terendah dengan **19,32% atau 966 orders**, tetapi memiliki AOV tertinggi sebesar **Rp81.306**.
+
+Hal ini menunjukkan bahwa setiap channel memiliki karakteristik transaksi yang berbeda.
+
+### 5.5 Menu Revenue Distribution
+
+Sebanyak **48 dari 70 menu atau 68,57%** menghasilkan sekitar **80,35% total revenue**.
+
+Dengan demikian, revenue Sedukopi relatif tersebar di seluruh portfolio menu dan tidak hanya bergantung pada sebagian kecil produk.
 
 ---
 
-## 5. Evaluate the Long Tail of the Menu
+## 6. Business Recommendations
 
-Use the Pareto analysis as a starting point to review lower-contributing menu items.
+### 6.1 Investigate Low-Performing Outlets
 
-Further analysis can determine whether selected products should be:
+Melakukan analisis lebih lanjut terhadap outlet dengan revenue lebih rendah seperti **Margonda** dan **Setia Budi Medan**.
 
-- Retained
-- Promoted
-- Repositioned
-- Bundled
-- Eventually rationalized
+Area yang dapat dievaluasi meliputi:
+
+* Customer traffic
+* Local demand
+* Product mix
+* Operating hours
+* Local marketing activity
+
+### 6.2 Prioritize High-Volume Products
+
+Memastikan ketersediaan inventory dan kapasitas persiapan untuk produk dengan volume tinggi seperti:
+
+* Matcha Espresso Fusion
+* Croissant Butter
+* Strawberry Smoothie
+* Cheese Cake Slice
+
+Prioritas tersebut terutama diperlukan selama periode peak transaction.
+
+### 6.3 Optimize Workforce Scheduling
+
+Menyesuaikan workforce scheduling berdasarkan pola peak hours yang ditemukan:
+
+* **07:00–09:00**
+* **12:00–14:00**
+* **17:00–20:00**
+
+Periode off-peak dapat dimanfaatkan untuk:
+
+* Restocking
+* Food preparation
+* Cleaning
+* Staff breaks
+* Operational preparation
+
+### 6.4 Optimize Channel Operations
+
+Meningkatkan kesiapan packaging dan order processing pada periode dengan permintaan Takeaway dan Delivery yang tinggi, khususnya pada morning peak.
+
+### 6.5 Evaluate Long-Tail Menu
+
+Menggunakan hasil Pareto Analysis sebagai dasar untuk mengevaluasi menu dengan kontribusi revenue yang lebih rendah.
+
+Evaluasi dapat digunakan untuk menentukan apakah produk perlu:
+
+* Dipertahankan
+* Dipromosikan
+* Direposisi
+* Digabungkan dalam bundling
+* Dievaluasi kembali keberadaannya
 
 ---
 
-# 🛠️ Tools & Technical Skills
+## 7. Tools & Skills
 
 ### PostgreSQL
 
-- `JOIN`
-- `GROUP BY`
-- `ORDER BY`
-- `SUM()`
-- `AVG()`
-- `COUNT()`
-- `CASE WHEN`
-- `EXTRACT()`
-- Window Functions
-- CTE
+Digunakan untuk proses data querying, aggregation, dan analysis.
+
+Technical skills yang digunakan:
+
+* `JOIN`
+* `GROUP BY`
+* `ORDER BY`
+* `SUM()`
+* `AVG()`
+* `COUNT()`
+* `CASE WHEN`
+* `EXTRACT()`
+* Window Functions
+* CTE
 
 ### Microsoft Excel
 
-- PivotTable
-- PivotChart
-- Data visualization
+Digunakan untuk exploratory analysis, visualisasi, dan business reporting.
 
----
+Skills yang digunakan:
 
-# 🔄 Analytical Workflow
+* PivotTable
+* PivotChart
+* Data Visualization
+
+### Analytical Workflow
+
+Alur analisis yang digunakan dalam proyek:
 
 ```text
 Business Questions
@@ -385,7 +513,4 @@ Excel Visualization
 Business Insights
         ↓
 Actionable Recommendations
-
-
-
-
+```
