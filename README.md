@@ -1,7 +1,5 @@
 # Optimizing Revenue & Operational Efficiency: Data-Driven Performance Analysis for Sedukopi
 
-## End-to-End Business Analysis using PostgreSQL & Microsoft Excel
-
 ## Table of Contents
 
 1. [Project Overview](#1-project-overview)
